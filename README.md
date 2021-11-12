@@ -26,13 +26,38 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. Explain the differences between `.map`, `.reduce` and `.filter` and describe a use case for each. 
 
+        .map -- .map iterates through all the items in the array and returns a new array, unlike forEach which may edit data in the original array, map can convert data in that copy it makes, this is really useful if you need to add and delete key pairs frequently, because you can do that with no fear of losing the original data record forever. 
+
+        .reduce -- .reduce executes a "reducer" callback function on each element of the array, passing in the return value from the calculation on the preceding element. The reducer callback walks through the array element-by-element, at each step adding the current array value to the result from the previous step. This is really handy for inventory, like adding up sums and totals.
+
+        .filter --  .filter creates a new array with all elements that pass the test implemented by the provided function. It calls a provided callback function once for each element in an array, and constructs a new array of all the values for which the callback returns a value that is true. This is super handy for searching through large databases and pulling out the information you want like for our travel example we did in class, finding all the cities with good wifi, hiking and beaches. 
+
+
+
+
+
 2. Explain the difference between a callback and a higher order function.
+
+        - a higher order function is a function that takes in a callback function as a parameter or argument. 
 
 3. Explain what a closure is.
 
+        - a closure is when an inner function reaches into it's surrounding state to grab a value. 
+
 4. Describe the four principles of the 'this' keyword.
 
+        1. Window binding -if we haven't given 'this' any context it will return the window, the global object in node or undefined in strict mode.
+
+        2. Implicit binding - Applies to objects with methods. When the function (method) is invoked, look the the left of the dot, that's what 'this' refers to.
+
+        3. Explicit binding - we tell a function what the 'this' keyword should be using .call, .apply or .bind. Call will immediately invoke the function and you pass in your arguments 1 by 1. Apply will immediately invoke the function and you pass in your arguments as an array. Bind you pass in your arguments 1 by 1, but it will not immediately invoke the function, instead it returns a brand new function that can be invoked later.
+
+        4. New binding - When a function is invoked with a new keyword the this keyword inside that function is bound to the new object being constructed. When a function is   invoked as a constructor function using the new keyword, this points to the new object that’s created
+
+
 5. Why do we need super() in an extended class?
+
+        - we need to 'superimpose' the parameters of the parent constructor onto the child so as to not lose the methods from the parent. 
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 

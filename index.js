@@ -2,6 +2,8 @@
 /* 🚀🚀🚀🤓 Task 1: 🤓🚀🚀🚀 
 Study the code below and explain in your own words why nested function can access the variable internal. */
 
+const { tsConstructorType } = require("@babel/types");
+
 const external = "I'm outside the function";
 
 function myFunction() {
@@ -17,7 +19,7 @@ myFunction();
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
-
+// -- nested function is withing Myfunction's scope and so therefore it is permissible for nested function to look within that scope for the data it needs.
 
 
 
@@ -28,10 +30,14 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(/*Your Code Here*/) {
+function summation(number) {
   /*Your Code Here*/
-
+  let sum = 0;
+  for (let i = 1; i <= number; i++) {
+    sum += i;
   }
+  return sum;
+}
  
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
@@ -56,9 +62,17 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function animalNames(data){
+  const displayNames = [];
+  const nameData = data.forEach(function (item) {
+    return displayNames.push(`name: ${item.animal_name}, scientific: ${item.scientific_name}`)
+  });
+   return displayNames;
+  
   }
+  
+  console.log(animalNames(zooAnimals));
+ 
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -67,20 +81,30 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
+  function lowerCaseNames(data){
     /*Your Code Here*/
-  }
-  
+    const lowerCaseNames = [];
+    data.map(function(item){
+  return lowerCaseNames.push(item.animal_name.toLowerCase(), item.scientific_name.toLowerCase());
+  });
+  return lowerCaseNames
+}
+console.log(lowerCaseNames(zooAnimals));
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
+  function lowPopulationAnimals(data){
     /*Your Code Here*/
+    const lowPop = data.filter(function(item){ 
+      return item.population < 5;
+    });
+    return lowPop
   }
-  
+
+  console.log(lowPopulationAnimals(zooAnimals));
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -88,10 +112,16 @@ const zooAnimals = [
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-  function USApop(/*Your Code Here*/){
+  function USApop(data){
     /*Your Code Here*/
+    const USApop = data.reduce(function(accumulator, item){
+      // console.log(`I am the accumulator ${accumulator}`);
+      // console.log(`I am the current value ${item.land_area}`);
+      return accumulator + item.population;
+    },0);
+    return USApop
   }
-  
+  console.log(USApop(zooAnimals));
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -101,10 +131,16 @@ const zooAnimals = [
     * The consume function should return the invocation of cb, passing a and b into cb as arguments
   */
 
-  function consume(/*Your Code Here */){
+  function consume(a, b, cb){
     /*Your Code Here */
+    return cb(a, b);
   }
- 
+
+  function callback(a, b){
+      return a * b;
+  }
+  
+ console.log(consume(2, 3, callback)
   
   /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
  // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
@@ -139,8 +175,8 @@ function greeting(/*Your Code Here */){
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
+function CuboidMaker({length, width, height}){
+  
 }
 
 
